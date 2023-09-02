@@ -19,6 +19,9 @@ public class PlayerStateManager : MonoBehaviour
 
     [HideInInspector] public Rigidbody2D rb;
 
+    [Header("Sound")]
+    public AudioManager audioManager;
+
 
     private void Awake()
     {
