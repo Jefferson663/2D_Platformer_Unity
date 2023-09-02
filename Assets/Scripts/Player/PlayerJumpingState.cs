@@ -6,6 +6,7 @@ public class PlayerJumpingState : PlayerBaseState
 {
     public override void StartState(PlayerStateManager player)
     {
+        player.audioManager.PlaySound("jumpingSound");
         player.rb.velocity = new Vector3(player.rb.velocity.x, player.jumpingPower);
     }
 
