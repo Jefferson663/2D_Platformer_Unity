@@ -11,19 +11,34 @@ public class PlayerRunningState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if(Input.GetKey(KeyCode.D))
+        HandleInputs(player);
+    }
+
+    public override void HandleCollision(PlayerStateManager player, Collision2D collider)
+    {
+        
+    }
+
+    private void HandleInputs(PlayerStateManager player)
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            player.transform.position += player.direction * player.velocity * Time.deltaTime;
+            player.SwitchState(player.jumpingState);
         }
-        else if(Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.D))
         {
-            player.transform.position -= player.direction * player.velocity * Time.deltaTime;
+            player.rb.velocity = new Vector3(player.velocity, player.rb.velocity.y);
+            player.GetComponentInChildren<SpriteRenderer>().flipX = true;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            player.rb.velocity = new Vector3(-player.velocity,player.rb.velocity.y);
+            player.GetComponentInChildren<SpriteRenderer>().flipX = false;
         }
         else
         {
             player.SwitchState(player.idleState);
         }
     }
-
     
 }
