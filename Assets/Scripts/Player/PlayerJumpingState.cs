@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerJumpingState : PlayerBaseState
 {
+    private int jumpCount;
     public override void StartState(PlayerStateManager player)
     {
+        jumpCount = 1;
         player.audioManager.PlaySound("jumpingSound");
         player.rb.velocity = new Vector3(player.rb.velocity.x, player.jumpingPower);
     }
@@ -35,6 +37,15 @@ public class PlayerJumpingState : PlayerBaseState
         {
             player.rb.velocity = new Vector3(-player.velocity * player.velocityJumping, player.rb.velocity.y);
             player.GetComponentInChildren<SpriteRenderer>().flipX = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(jumpCount > 0)
+            {
+                player.rb.velocity = new Vector3(player.rb.velocity.x, player.jumpingPower);
+                player.audioManager.PlaySound("jumpingSound");
+                jumpCount--;
+            }
         }
     }
 }
