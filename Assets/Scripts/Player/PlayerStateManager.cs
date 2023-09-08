@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerJumpingState jumpingState = new PlayerJumpingState();
 
+    [Header("Player Health")]
+    [SerializeField] private int health = 3;
+    [SerializeField] private int maxHealth = 3;
+    [SerializeField] private GameObject UI;
+    [SerializeField] private Image fullHeart;
+    [SerializeField] private Image emptyHeart;
+    [Space]
     [Header("Movement")]
     [Space]
     public float velocity;
@@ -36,6 +44,7 @@ public class PlayerStateManager : MonoBehaviour
     private void Update()
     {
         currentState.UpdateState(this);
+        HandleHealth();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,5 +56,27 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState = state;
         currentState.StartState(this);
+    }
+
+    private void HandleHealth()
+    {
+        foreach (Transform t in UI.transform)
+        {
+            if(health > 0)
+            {
+                t.GetComponent<Image>().sprite = null;
+                health--;
+            }
+            else
+            {
+                t.GetComponent<Image>().sprite = null;
+            }
+            
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 }
