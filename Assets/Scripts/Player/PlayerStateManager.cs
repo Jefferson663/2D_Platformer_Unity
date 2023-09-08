@@ -17,7 +17,6 @@ public class PlayerStateManager : MonoBehaviour
     public float jumpingPower = 5f;
     public float abruptStop = 0.4f;
     [Range(1f,2f)]public float runMultiplier;
-    [Range(0f,1f)]public float abruptStop = 0.4f;
 
     [HideInInspector] public Rigidbody2D rb;
 
