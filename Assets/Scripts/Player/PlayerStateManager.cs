@@ -12,11 +12,12 @@ public class PlayerStateManager : MonoBehaviour
 
     [Header("Movement")]
     [Space]
-    public float velocity = 1.0f;
-    public float velocityJumping = 0.7f;
+    public float velocity;
+    [Range(0f,1f)]public float velocityJumping = 0.7f;
     public float jumpingPower = 5f;
     public float abruptStop = 0.4f;
     [Range(1f,2f)]public float runMultiplier;
+    [Range(0f,1f)]public float abruptStop = 0.4f;
 
     [HideInInspector] public Rigidbody2D rb;
 
