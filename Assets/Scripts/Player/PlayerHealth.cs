@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,11 +7,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("Player Health")]
     [SerializeField] private int health = 3;
     [SerializeField] private int maxHealth = 3;
-    private int UIhealth;
+    [SerializeField] private float damageCoolDown = 2;
     [SerializeField] private GameObject UI;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
+    private int UIhealth;
+    private bool canTakeDamage = true;
 
     private void Update()
     {
@@ -22,10 +25,18 @@ public class PlayerHealth : MonoBehaviour
         {
             Heal(1);
         }
-        if (collision.collider.CompareTag("enemy"))
+        if (collision.collider.CompareTag("enemy") && canTakeDamage)
         {
             TakeDamage(1);
+            canTakeDamage = false;
+            StartCoroutine(DamageCoolDown());
         }
+    }
+
+    private IEnumerator DamageCoolDown()
+    {
+        yield return new WaitForSeconds(damageCoolDown);
+        canTakeDamage = true;
     }
     private void HandleHealth()
     {
