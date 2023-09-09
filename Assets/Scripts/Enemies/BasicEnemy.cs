@@ -8,23 +8,31 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] [Range(-1,1)] protected int direction = -1;
     protected SpriteRenderer sprite;
 
-    protected void Start()
+    private void Start()
     {
-        sprite = GetComponentInChildren<SpriteRenderer>();
-        if(direction == 1)
-        {
-            CheckDirection();
-        }
+        HandleStart();
     }
-    protected void Update()
+    private void Update()
     {
-        transform.position += new Vector3(direction,0) * runSpeed * Time.deltaTime;
+        HandleMovement();
     }
-    protected void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         HandleCollision(collision);
     }
 
+    protected virtual void HandleStart()
+    {
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        if (direction == 1)
+        {
+            CheckDirection();
+        }
+    }
+    protected virtual void HandleMovement()
+    {
+        transform.position += new Vector3(direction, 0) * runSpeed * Time.deltaTime;
+    }
     protected virtual void HandleCollision(Collision2D collision)
     {
         if(collision.collider.CompareTag("wall"))
