@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerJumpingState jumpingState = new PlayerJumpingState();
 
+    [Space]
     [Header("Movement")]
     [Space]
     public float velocity;
@@ -48,4 +50,6 @@ public class PlayerStateManager : MonoBehaviour
         currentState = state;
         currentState.StartState(this);
     }
+
+    
 }
