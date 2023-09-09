@@ -10,7 +10,6 @@ public class PlayerJumpingState : PlayerBaseState
         jumpCount = 1;
         player.audioManager.PlaySound("jumpingSound");
         player.rb.velocity = new Vector3(player.rb.velocity.x, player.jumpingPower);
-        Debug.Log(jumpCount);
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -46,7 +45,6 @@ public class PlayerJumpingState : PlayerBaseState
                 player.rb.velocity = new Vector3(player.rb.velocity.x, player.jumpingPower);
                 player.audioManager.PlaySound("jumpingSound");
                 jumpCount--;
-                Debug.Log(jumpCount);
             }
         }
     }
