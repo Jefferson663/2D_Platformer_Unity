@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: jumpingSound
-    clip: {fileID: 8300000, guid: be0831a3ae9dc734784f1c1f25bc51f9, type: 3}
+    clip: {fileID: 8300000, guid: 11a2ecd908511114d86cd65d15b81cd5, type: 3}
     volume: 1
     pitch: 0.1
     source: {fileID: 0}
