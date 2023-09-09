@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1540893193445090409}
+  - component: {fileID: 6110259020293571835}
+  - component: {fileID: 661417211514367545}
   - component: {fileID: 5756564162178911732}
   - component: {fileID: 7571367725440956318}
   m_Layer: 0
@@ -34,6 +36,44 @@ Transform:
   - {fileID: 3781226843830175949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6110259020293571835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4521293169047386534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6a673b0d73fb24587ade624f14c7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 0
+  velocityJumping: 0.7
+  jumpingPower: 5
+  abruptStop: 0.4
+  runMultiplier: 0
+  rb: {fileID: 0}
+  audioManager: {fileID: 0}
+--- !u!114 &661417211514367545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4521293169047386534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bd4122057e6fd448a7967ce432adb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  maxHealth: 3
+  damageCoolDown: 2
+  UI: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!50 &5756564162178911732
 Rigidbody2D:
   serializedVersion: 4
@@ -60,7 +100,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &7571367725440956318
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
