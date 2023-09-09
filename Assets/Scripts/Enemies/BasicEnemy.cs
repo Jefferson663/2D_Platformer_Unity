@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour
 {
-    [SerializeField] protected float runSpeed;
+    [SerializeField] protected float runSpeed = 2;
     [SerializeField] [Range(-1,1)] protected int direction = -1;
     protected SpriteRenderer sprite;
 
@@ -16,16 +16,16 @@ public class BasicEnemy : MonoBehaviour
             CheckDirection();
         }
     }
-    private void Update()
+    protected void Update()
     {
         transform.position += new Vector3(direction,0) * runSpeed * Time.deltaTime;
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         HandleCollision(collision);
     }
 
-    public virtual void HandleCollision(Collision2D collision)
+    protected virtual void HandleCollision(Collision2D collision)
     {
         if(collision.collider.CompareTag("wall"))
         {
