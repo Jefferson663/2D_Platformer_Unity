@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Behavior.Movement;
 
 public class JumpingEnemy : BasicEnemy
 {
     [SerializeField][Range(1, 5)] private int timeToJump;
     [SerializeField] private float jumpPower;
-    private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        enemyBody = GetComponent<Rigidbody2D>();
+        enemyMovement = new Movement(enemyBody, runSpeed, jumpPower, direction);
+    }
     private void Start()
     {
-        HandleStart();
-        rb = GetComponent<Rigidbody2D>();
+        OnGameStart();
         StartCoroutine(WaitToJump());
     }
     private void Update()
@@ -24,7 +29,7 @@ public class JumpingEnemy : BasicEnemy
 
     protected override void HandleMovement()
     {
-        transform.position += new Vector3(direction, 0) * runSpeed * Time.deltaTime;
+        enemyMovement.MoveBody();
     }
 
     private IEnumerator WaitToJump()
@@ -32,7 +37,7 @@ public class JumpingEnemy : BasicEnemy
         while (true)
         {
             yield return new WaitForSeconds(timeToJump);
-            rb.velocity = new Vector3(rb.velocity.x, jumpPower);
+            enemyMovement.Jump();
         }
     }
 }

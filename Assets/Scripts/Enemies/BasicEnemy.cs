@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Behavior.Movement;
 
 public class BasicEnemy : MonoBehaviour
 {
     [SerializeField] protected float runSpeed = 2;
     [SerializeField] [Range(-1,1)] protected int direction = -1;
+    private int right = 1;
     protected SpriteRenderer sprite;
 
+    protected Rigidbody2D enemyBody;
+    protected Movement enemyMovement;
+
+    private void Awake()
+    {
+        enemyBody = GetComponent<Rigidbody2D>();
+        enemyMovement = new Movement(enemyBody, runSpeed, direction);
+    }
     private void Start()
     {
-        HandleStart();
+        OnGameStart();
     }
     private void Update()
     {
@@ -21,36 +31,29 @@ public class BasicEnemy : MonoBehaviour
         HandleCollision(collision);
     }
 
-    protected virtual void HandleStart()
+    protected virtual void OnGameStart()
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
-        if (direction == 1)
-        {
-            CheckDirection();
-        }
+        CheckWhereToLook();
     }
     protected virtual void HandleMovement()
     {
-        transform.position += new Vector3(direction, 0) * runSpeed * Time.deltaTime;
+        enemyMovement.MoveBody();
     }
     protected virtual void HandleCollision(Collision2D collision)
     {
-        if(collision.collider.CompareTag("wall"))
+        if(collision.collider.CompareTag("Floor"))
         {
-            direction *= -1;
-            CheckDirection();
+            enemyMovement.TurnAround();
+            CheckWhereToLook();
         }
     }
 
-    protected virtual void CheckDirection()
+    protected virtual void CheckWhereToLook()
     {
-        if(direction == 1)
-        {
+        if(enemyMovement.CheckDirection() == right)
             sprite.flipX = true;
-        }
         else
-        {
             sprite.flipX = false;
-        }
     }
 }
