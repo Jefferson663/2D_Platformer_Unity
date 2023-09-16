@@ -11,7 +11,7 @@ public class BasicEnemy : MonoBehaviour
     protected SpriteRenderer sprite;
 
     protected Rigidbody2D enemyBody;
-    protected Movement enemyMovement;
+    public Movement enemyMovement;
 
     private void Awake()
     {
@@ -25,10 +25,6 @@ public class BasicEnemy : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        HandleCollision(collision);
     }
 
     protected virtual void OnGameStart()
@@ -49,7 +45,7 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    protected virtual void CheckWhereToLook()
+    public virtual void CheckWhereToLook()
     {
         if(enemyMovement.CheckDirection() == right)
             sprite.flipX = true;

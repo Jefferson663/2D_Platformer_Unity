@@ -22,11 +22,6 @@ public class JumpingEnemy : BasicEnemy
     {
         HandleMovement();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        HandleCollision(collision);
-    }
-
     protected override void HandleMovement()
     {
         enemyMovement.MoveBody();

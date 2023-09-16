@@ -22,7 +22,6 @@ public class PlayerStateManager : MonoBehaviour
     public float jumpingPower = 5f;
     [Range(0f, 1f)] public float velocityWhenJumping = 0.7f;
     [Range(0f, 1f)] public float abruptStop = 0.4f;
-    [Range(1f,2f)] public float runMultiplier;
 
     [HideInInspector] public Rigidbody2D playerBody;
 
@@ -38,7 +37,7 @@ public class PlayerStateManager : MonoBehaviour
     private void Awake()
     {
         playerBody = GetComponent<Rigidbody2D>();
-        playerMovement = new Movement(playerBody, velocity, jumpingPower, velocityWhenJumping, abruptStop);
+        playerMovement = new Movement(playerBody, velocity, jumpingPower, velocityWhenJumping, abruptStop, audioManager);
     }
     private void Start()
     {
@@ -53,6 +52,10 @@ public class PlayerStateManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentState.HandleCollision(this, collision);
+    }
+    public void NotJumping()
+    {
+        SwitchState(this.runningState);
     }
     public void SwitchState(PlayerBaseState state)
     {

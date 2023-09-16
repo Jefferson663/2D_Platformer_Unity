@@ -18,8 +18,5 @@ public class FastEnemy : BasicEnemy
     {
         HandleMovement();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        HandleCollision(collision);
-    }
+    
 }

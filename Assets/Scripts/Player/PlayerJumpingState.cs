@@ -8,7 +8,7 @@ public class PlayerJumpingState : PlayerBaseState
     public override void OnSwitchState(PlayerStateManager player)
     {
         jumpCount = 2;
-        jumpCount = player.playerMovement.Jump(jumpCount);
+        Jump(player);
     }
 
     public override void StateBehavior(PlayerStateManager player)
@@ -19,10 +19,12 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void HandleCollision(PlayerStateManager player, Collision2D collider)
     {
-        if (collider.gameObject.CompareTag("Floor"))
-        {
-            player.SwitchState(player.runningState);
-        }
+        
+    }
+    
+    private void Jump(PlayerStateManager player)
+    {
+        jumpCount = player.playerMovement.Jump(jumpCount);
     }
     private void HandleInputs(PlayerStateManager player)
     {
