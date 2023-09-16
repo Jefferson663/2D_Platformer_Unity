@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private Sound[] sounds;
+    [SerializeField] private Sound[] audioFiles;
 
     private void Awake()
     {
-        foreach(Sound s in sounds)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-
-            s.source.playOnAwake = false;
-        }
+        GenerateGameAudio();
     }
 
+    private void GenerateGameAudio()
+    {
+        foreach (Sound audio in audioFiles)
+        {
+            audio.source = gameObject.AddComponent<AudioSource>();
+            audio.source.clip = audio.audioToPlay;
+            audio.source.volume = audio.volume;
+            audio.source.pitch = audio.pitch;
+            audio.source.playOnAwake = false;
+        }
+    }
     public void PlaySound(string soundName)
     {
-        Sound s = Array.Find(sounds, sound  => sound.name == soundName);
-        s.source.Play();
+        Sound sound = Array.Find(audioFiles, sound  => sound.name == soundName);
+        sound.source.Play();
     }
 }

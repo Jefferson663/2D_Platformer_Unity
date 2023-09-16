@@ -5,14 +5,13 @@ using UnityEngine;
 public class PlayerJumpingState : PlayerBaseState
 {
     private int jumpCount;
-    public override void StartState(PlayerStateManager player)
+    public override void OnSwitchState(PlayerStateManager player)
     {
-        jumpCount = 1;
-        player.audioManager.PlaySound("jumpingSound");
-        player.rb.velocity = new Vector3(player.rb.velocity.x, player.jumpingPower);
+        jumpCount = 2;
+        Jump(player);
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public override void StateBehavior(PlayerStateManager player)
     {
         HandleInputs(player);
         
@@ -20,32 +19,28 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void HandleCollision(PlayerStateManager player, Collision2D collider)
     {
-        if (collider.gameObject.CompareTag("Floor"))
-        {
-            player.SwitchState(player.runningState);
-        }
+        
     }
-
+    
+    private void Jump(PlayerStateManager player)
+    {
+        jumpCount = player.playerMovement.Jump(jumpCount);
+    }
     private void HandleInputs(PlayerStateManager player)
     {
         if (Input.GetKey(KeyCode.D))
         {
-            player.rb.velocity = new Vector3(player.velocity * player.velocityJumping, player.rb.velocity.y);
-            player.GetComponentInChildren<SpriteRenderer>().flipX = true;
+            player.playerMovement.MoveBodyWhileJumping(player.right);
+            player.sprite.flipX = true;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            player.rb.velocity = new Vector3(-player.velocity * player.velocityJumping, player.rb.velocity.y);
-            player.GetComponentInChildren<SpriteRenderer>().flipX = false;
+           player.playerMovement.MoveBodyWhileJumping(player.left);
+            player.sprite.flipX = false;
         }
+
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if(jumpCount > 0)
-            {
-                player.rb.velocity = new Vector3(player.rb.velocity.x, player.jumpingPower);
-                player.audioManager.PlaySound("jumpingSound");
-                jumpCount--;
-            }
-        }
+            jumpCount = player.playerMovement.Jump(jumpCount);
     }
+ 
 }

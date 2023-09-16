@@ -6,7 +6,7 @@ using System;
 public class Sound 
 {
     public string name;
-    public AudioClip clip;
+    public AudioClip audioToPlay;
 
     [Range(0f,1f)]
     public float volume;
