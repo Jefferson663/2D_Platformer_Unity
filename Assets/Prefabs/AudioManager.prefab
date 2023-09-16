@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3200243660016641329}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: audiomanager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,24 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7221b7dceddc9e542a3e928b88e2cf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: jumpingSound
-    clip: {fileID: 8300000, guid: 11a2ecd908511114d86cd65d15b81cd5, type: 3}
-    volume: 1
-    pitch: 0.1
-    source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    source: {fileID: 0}
+  audioFiles: []
