@@ -8,7 +8,7 @@ TagManager:
   - enemy
   - heal
   - player
-  - wall
+  - audiomanager
   layers:
   - Default
   - TransparentFX
