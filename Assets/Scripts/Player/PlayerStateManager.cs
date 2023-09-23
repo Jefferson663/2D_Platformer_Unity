@@ -17,10 +17,10 @@ public class PlayerStateManager : MonoBehaviour
     [Space]
     [Header("Movement")]
     [Space]
-    [HideInInspector]public int right = 1;
-    [HideInInspector]public int left = -1;
     public float velocity;
     public float jumpingPower = 5f;
+    [HideInInspector]public int right = 1;
+    [HideInInspector]public int left = -1;
     [Range(0f, 1f)] public float velocityWhenJumping = 0.7f;
     [Range(0f, 1f)] public float abruptStop = 0.4f;
 
@@ -29,6 +29,7 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Sound")]
     public AudioManager audioManager;
 
+    [Header("Sprites")]
     private Animator animator;
     public SpriteRenderer spriteRenderer;
     [SerializeField] private string hurtTag;
@@ -39,11 +40,13 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector]public Movement playerMovement;
     [HideInInspector] public ManageSprites spriteManager;
 
+    public GameObject playerParticleSystem;
+
     private void Awake()
     {
         playerBody = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        playerMovement = new Movement(playerBody, velocity, jumpingPower, velocityWhenJumping, abruptStop, audioManager);
+        playerMovement = new Movement(playerBody, velocity, abruptStop, jumpingPower, velocityWhenJumping, audioManager);
         spriteManager = new ManageSprites(spriteRenderer, animator, jumpTag, hurtTag, runTag);
     }
     private void Start()

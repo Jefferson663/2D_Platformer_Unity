@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
         player = GetComponent<PlayerStateManager>();
     }
 
-    private void Update()
+    private void Start()
     {
         HandleHealth();
     }
@@ -29,13 +29,12 @@ public class PlayerHealth : MonoBehaviour
         if (collision.collider.CompareTag("heal"))
         {
             Heal(1);
+            HandleHealth();
         }
         if (collision.collider.CompareTag("enemy") && canTakeDamage)
         {
-            TakeDamage(1);
-            canTakeDamage = false;
-            player.spriteManager.HurtAnimation();
-            StartCoroutine(DamageCoolDown());
+            CollideWithEnemy();
+            HandleHealth();
         }
     }
 
@@ -63,7 +62,7 @@ public class PlayerHealth : MonoBehaviour
 
         }
     }
-    public void TakeDamage(int damage)
+    private void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -74,8 +73,7 @@ public class PlayerHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void Heal(int heal)
+    private void Heal(int heal)
     {
         health += heal;
 
@@ -84,4 +82,10 @@ public class PlayerHealth : MonoBehaviour
             health = maxHealth;
         }
     }
+    private void CollideWithEnemy(){
+            TakeDamage(1);
+            canTakeDamage = false;
+            player.spriteManager.HurtAnimation();
+            StartCoroutine(DamageCoolDown());
+    } 
 }

@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public PlayerCollectables inventory = PlayerCollectables.GetInstace();
+    public event EventHandler OnCoinCollected;
+    public void TriggerCoinEvent(){
+        OnCoinCollected?.Invoke(this, EventArgs.Empty);
+    }
 }

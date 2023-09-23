@@ -7,6 +7,7 @@ public class PlayerRunningState : PlayerBaseState
     public override void OnSwitchState(PlayerStateManager player)
     {
         player.spriteManager.RunAnimation();
+        player.playerParticleSystem.SetActive(true);
     }
 
     public override void StateBehavior(PlayerStateManager player)
@@ -22,9 +23,10 @@ public class PlayerRunningState : PlayerBaseState
     private void HandleInputs(PlayerStateManager player)
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)){
+            player.playerParticleSystem.SetActive(false);
             player.SwitchState(player.jumpingState);
-
+        }
         else if (Input.GetKey(KeyCode.D))
         {
             player.playerMovement.MoveBody(player.right);
@@ -39,6 +41,7 @@ public class PlayerRunningState : PlayerBaseState
         else
         {
             player.SwitchState(player.idleState);
+            player.playerParticleSystem.SetActive(false);
         }
 
     }

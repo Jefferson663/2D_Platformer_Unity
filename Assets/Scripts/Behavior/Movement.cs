@@ -36,7 +36,7 @@ namespace Behavior.Movement
             this.direction = direction;
             this.timeToStop = 1;
         }
-        public Movement(Rigidbody2D body, float bodyVelocity, float jumpPower, float velocityWhileJumping, float timeToStop, AudioManager audioManager)
+        public Movement(Rigidbody2D body, float bodyVelocity, float timeToStop, float jumpPower, float velocityWhileJumping, AudioManager audioManager)
         {
             this.bodyToMove = body;
             this.bodyVelocity = bodyVelocity;
@@ -73,7 +73,7 @@ namespace Behavior.Movement
                 bodyToMove.velocity = new Vector3(bodyToMove.velocity.x, jumpPower);
                 this.audioManager.PlaySound("Jump");
             }
-            return jumps - 1;
+            return --jumps;
         }
         public void TurnAround()
         {
