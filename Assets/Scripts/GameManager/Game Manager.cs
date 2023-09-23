@@ -5,49 +5,29 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public static GameManager Instance;
-    [HideInInspector] public GameState state; 
-    public static event Action<GameState> OnStateChange;
-
-
-    private void Awake()
-    {
-        Instance = this;
+    private int empty = -1;
+    public PlayerConfig playerConfigs;
+    [SerializeField]private WinFlag goal;
+    private GameObject player;
+    private void Awake(){
+        goal.OnPlayerWin += SetPlayerValues;
+        GetPlayerPrefValues();
+        SetPlayerValues();
     }
-    void Start()
-    {
-        UpdateState(GameState.playing);
+    private void SetPlayerValues(){
+        player = GameObject.FindWithTag("player");
+        player.GetComponent<PlayerHealth>().health = playerConfigs.playerLife;
+        player.GetComponent<CoinManager>().coinCounter = playerConfigs.playerCoins;
     }
-
-    
-    void Update()
-    {
-        
+    private void SetPlayerValues(object sender, EventArgs e){
+        player = GameObject.FindWithTag("player");
+        player.GetComponent<PlayerHealth>().health = playerConfigs.playerLife;
+        player.GetComponent<CoinManager>().coinCounter = playerConfigs.playerCoins;
     }
-
-    private void UpdateState(GameState newState)
-    {
-        state = newState;
-
-        switch(newState)
-        {
-            case GameState.playing:
-                break;
-            case GameState.dead: 
-                break;
-            case GameState.stageClear: 
-                break;
-            default:
-                throw new System.Exception();
-        }
-
-        OnStateChange?.Invoke(newState);
+    private void GetPlayerPrefValues(){
+        if(PlayerPrefs.GetInt("PlayerHealth", empty) != empty)
+            playerConfigs.playerLife = PlayerPrefs.GetInt("PlayerHealth");
+        if(PlayerPrefs.GetInt("PlayerCoins", empty) != empty)
+            playerConfigs.playerCoins = PlayerPrefs.GetInt("PlayerCoins");
     }
-}
-
-public enum GameState
-{
-    playing,
-    dead,
-    stageClear
 }

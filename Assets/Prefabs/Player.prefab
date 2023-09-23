@@ -5022,12 +5022,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6a673b0d73fb24587ade624f14c7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: 5.95
+  jumpingPower: 6
   right: 1
   left: -1
-  velocity: 0
-  jumpingPower: 5
   velocityWhenJumping: 0.7
-  abruptStop: 0.4
+  abruptStop: 0
   playerBody: {fileID: 0}
   audioManager: {fileID: 0}
   spriteRenderer: {fileID: 4831791782080474355}

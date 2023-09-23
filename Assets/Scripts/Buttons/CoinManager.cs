@@ -8,12 +8,19 @@ public class CoinManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coinCounterCanvas;
     [SerializeField] private PlayerInventory player;
-    private int coinCounter = 0;
+    [HideInInspector] public int coinCounter = 0;
     private void Awake(){
         player.OnCoinCollected += UpdateCoins;
+        UpdateCoins();
+    }
+    private void UpdateCoins(){
+        coinCounterCanvas.text = coinCounter.ToString();
     }
     private void UpdateCoins(object sender, EventArgs e){
         coinCounter++;
         coinCounterCanvas.text = coinCounter.ToString();
+    }
+    private void SetPlayerPrefCoins(){
+        PlayerPrefs.SetInt("PlayerCoins", coinCounter);
     }
 }

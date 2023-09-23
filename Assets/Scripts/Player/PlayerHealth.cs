@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Player Health")]
-    [SerializeField] private int health = 3;
-    [SerializeField] private int maxHealth = 3;
+    public int health = 3;
+    [SerializeField] private const int maxHealth = 3;
     [SerializeField] private float damageCoolDown = 2;
     [SerializeField] private GameObject UI;
     [SerializeField] private GameObject gameOverScreen;
@@ -38,6 +38,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void SetPlayerPrefHealth(){
+        PlayerPrefs.SetInt("PlayerHealth", health);
+    }
     private IEnumerator DamageCoolDown()
     {
         yield return new WaitForSeconds(damageCoolDown);
