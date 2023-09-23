@@ -9,6 +9,7 @@ public class PlayerJumpingState : PlayerBaseState
     {
         jumpCount = 2;
         Jump(player);
+        player.spriteManager.JumpAnimation();
     }
 
     public override void StateBehavior(PlayerStateManager player)
@@ -31,12 +32,12 @@ public class PlayerJumpingState : PlayerBaseState
         if (Input.GetKey(KeyCode.D))
         {
             player.playerMovement.MoveBodyWhileJumping(player.right);
-            player.sprite.flipX = true;
+            player.spriteManager.spriteLookRight();
         }
         else if (Input.GetKey(KeyCode.A))
         {
            player.playerMovement.MoveBodyWhileJumping(player.left);
-            player.sprite.flipX = false;
+            player.spriteManager.spriteLookLeft();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

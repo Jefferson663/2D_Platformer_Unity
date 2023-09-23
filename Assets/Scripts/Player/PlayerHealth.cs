@@ -14,6 +14,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Sprite emptyHeart;
     private int UIhealth;
     private bool canTakeDamage = true;
+    private PlayerStateManager player;
+
+    private void Awake(){
+        player = GetComponent<PlayerStateManager>();
+    }
 
     private void Update()
     {
@@ -29,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(1);
             canTakeDamage = false;
+            player.spriteManager.HurtAnimation();
             StartCoroutine(DamageCoolDown());
         }
     }
@@ -37,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(damageCoolDown);
         canTakeDamage = true;
+        player.spriteManager.EndHurtAnimation();
     }
     private void HandleHealth()
     {

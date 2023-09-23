@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad240b638c34cb408df7406cdaabe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &877843076 stripped
+--- !u!212 &862736243 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4831791782080474355, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
   m_PrefabInstance: {fileID: 1710876647}
@@ -917,19 +917,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1184114172832493155, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1184114172832493155, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1184114172832493155, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 336.5
       objectReference: {fileID: 0}
     - target: {fileID: 1184114172832493155, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 10.222702
       objectReference: {fileID: 0}
     - target: {fileID: 1387179765786416056, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_IsActive
@@ -945,7 +945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4222800532221104495, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4534412912407252500, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_Pivot.x
@@ -1029,35 +1029,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7884004393316413095, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7884004393316413095, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7884004393316413095, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 336.5
       objectReference: {fileID: 0}
     - target: {fileID: 7884004393316413095, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -215.5546
       objectReference: {fileID: 0}
     - target: {fileID: 8101787083682535472, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8101787083682535472, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8101787083682535472, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 336.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101787083682535472, guid: ea01f189aa0451941896eadc142df2e5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -175.5546
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26539,6 +26539,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d98fbd294eac38a4aa8751aa4b123cce, type: 3}
     - target: {fileID: 661417211514367545, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: damageCoolDown
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 661417211514367545, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 662138209}
@@ -26590,10 +26594,42 @@ PrefabInstance:
       propertyPath: m_TagString
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 4831791782080474355, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1034852615, guid: 8d4678568551ccd4bb43d639a52ea54d, type: 3}
+    - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: hurt
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: idle
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: runTag
+      value: isRunning
+      objectReference: {fileID: 0}
     - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 877843076}
+      objectReference: {fileID: 862736243}
+    - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: hurtTag
+      value: isHurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: idleTag
+      value: isIdle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: jumpTag
+      value: isJumping
+      objectReference: {fileID: 0}
     - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
       propertyPath: velocity
       value: 5.95
@@ -26610,6 +26646,10 @@ PrefabInstance:
       propertyPath: jumpingPower
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 862736243}
     - target: {fileID: 6110259020293571835, guid: 424ba7aadab3de745b1b2630e957ca07, type: 3}
       propertyPath: velocityWhenJumping
       value: 0.702

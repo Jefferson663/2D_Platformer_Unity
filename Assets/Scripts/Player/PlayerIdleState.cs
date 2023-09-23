@@ -7,6 +7,7 @@ public class PlayerIdleState : PlayerBaseState
     public override void OnSwitchState(PlayerStateManager player)
     {
         player.playerMovement.Stop();
+        player.spriteManager.EndRunAnimation();
     }
 
     public override void StateBehavior(PlayerStateManager player)

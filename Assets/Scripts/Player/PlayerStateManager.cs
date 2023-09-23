@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Behavior.Movement;
+using Behavior.SpriteManager;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -27,17 +28,23 @@ public class PlayerStateManager : MonoBehaviour
 
     [Header("Sound")]
     public AudioManager audioManager;
-    [Space]
-    [Header("Sprite")]
-    public SpriteRenderer sprite;
+
+    private Animator animator;
+    public SpriteRenderer spriteRenderer;
+    [SerializeField] private string hurtTag;
+    [SerializeField] private string jumpTag;
+    [SerializeField] private string runTag;
 
     //Player management stuff
     [HideInInspector]public Movement playerMovement;
+    [HideInInspector] public ManageSprites spriteManager;
 
     private void Awake()
     {
         playerBody = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
         playerMovement = new Movement(playerBody, velocity, jumpingPower, velocityWhenJumping, abruptStop, audioManager);
+        spriteManager = new ManageSprites(spriteRenderer, animator, jumpTag, hurtTag, runTag);
     }
     private void Start()
     {
@@ -56,6 +63,7 @@ public class PlayerStateManager : MonoBehaviour
     public void NotJumping()
     {
         SwitchState(this.runningState);
+        spriteManager.EndJumpAnimation();
     }
     public void SwitchState(PlayerBaseState state)
     {

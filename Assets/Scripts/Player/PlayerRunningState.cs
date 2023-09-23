@@ -6,7 +6,7 @@ public class PlayerRunningState : PlayerBaseState
 {
     public override void OnSwitchState(PlayerStateManager player)
     {
-       
+        player.spriteManager.RunAnimation();
     }
 
     public override void StateBehavior(PlayerStateManager player)
@@ -28,16 +28,19 @@ public class PlayerRunningState : PlayerBaseState
         else if (Input.GetKey(KeyCode.D))
         {
             player.playerMovement.MoveBody(player.right);
-            player.sprite.flipX = true;
+            player.spriteManager.spriteLookRight();
         }
         else if (Input.GetKey(KeyCode.A))
         {
             player.playerMovement.MoveBody(player.left);
-            player.sprite.flipX = false;
+            player.spriteManager.spriteLookLeft();
         }
 
         else
+        {
             player.SwitchState(player.idleState);
+        }
+
     }
     
 }
