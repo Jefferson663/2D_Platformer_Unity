@@ -8,7 +8,7 @@ public class FastEnemy : BasicEnemy
     private void Awake()
     {
         enemyBody = GetComponent<Rigidbody2D>();
-        enemyMovement = new Movement(enemyBody, runSpeed, direction);
+        enemyMovement = new Movement(this);
     }
     private void Start()
     {

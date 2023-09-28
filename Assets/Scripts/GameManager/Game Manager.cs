@@ -9,25 +9,22 @@ public class GameManager : MonoBehaviour
     public PlayerConfig playerConfigs;
     [SerializeField]private WinFlag goal;
     private GameObject player;
+    public void SetPlayerHealthToDefault(){
+        PlayerPrefs.SetInt("PlayerHealth",3);
+    }
     private void Awake(){
+        player = GameObject.FindWithTag("player");
         goal.OnPlayerWin += SetPlayerValues;
         GetPlayerPrefValues();
-        SetPlayerValues();
-    }
-    private void SetPlayerValues(){
-        player = GameObject.FindWithTag("player");
-        player.GetComponent<PlayerHealth>().health = playerConfigs.playerLife;
-        player.GetComponent<CoinManager>().coinCounter = playerConfigs.playerCoins;
     }
     private void SetPlayerValues(object sender, EventArgs e){
-        player = GameObject.FindWithTag("player");
-        player.GetComponent<PlayerHealth>().health = playerConfigs.playerLife;
-        player.GetComponent<CoinManager>().coinCounter = playerConfigs.playerCoins;
+        PlayerPrefs.SetInt("PlayerCoins", player.GetComponent<CoinManager>().coinCounter);
+        player.GetComponent<PlayerHealth>().SetPlayerPrefHealth();
     }
     private void GetPlayerPrefValues(){
         if(PlayerPrefs.GetInt("PlayerHealth", empty) != empty)
-            playerConfigs.playerLife = PlayerPrefs.GetInt("PlayerHealth");
+            player.GetComponent<PlayerHealth>().health  = PlayerPrefs.GetInt("PlayerHealth", 3);
         if(PlayerPrefs.GetInt("PlayerCoins", empty) != empty)
-            playerConfigs.playerCoins = PlayerPrefs.GetInt("PlayerCoins");
+            player.GetComponent<CoinManager>().coinCounter = PlayerPrefs.GetInt("PlayerCoins");
     }
 }

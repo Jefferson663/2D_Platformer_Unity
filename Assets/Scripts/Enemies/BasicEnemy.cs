@@ -5,18 +5,18 @@ using Behavior.Movement;
 
 public class BasicEnemy : MonoBehaviour
 {
-    [SerializeField] protected float runSpeed = 2;
-    [SerializeField] [Range(-1,1)] protected int direction = -1;
+    public float runSpeed = 2;
+    [Range(-1,1)] public int direction = -1;
     private int right = 1;
     protected SpriteRenderer sprite;
 
-    protected Rigidbody2D enemyBody;
+    public Rigidbody2D enemyBody;
     public Movement enemyMovement;
 
     private void Awake()
     {
         enemyBody = GetComponent<Rigidbody2D>();
-        enemyMovement = new Movement(enemyBody, runSpeed, direction);
+        enemyMovement = new Movement(this);
     }
     private void Start()
     {

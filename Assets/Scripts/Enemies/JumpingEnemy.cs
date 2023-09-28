@@ -6,12 +6,12 @@ using Behavior.Movement;
 public class JumpingEnemy : BasicEnemy
 {
     [SerializeField][Range(1, 5)] private int timeToJump;
-    [SerializeField] private float jumpPower;
+    public float jumpPower;
 
     private void Awake()
     {
         enemyBody = GetComponent<Rigidbody2D>();
-        enemyMovement = new Movement(enemyBody, runSpeed, jumpPower, direction);
+        enemyMovement = new Movement(this);
     }
     private void Start()
     {

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerConfigs
   m_EditorClassIdentifier: 
   playerLife: 3
-  playerCoins: 0
+  playerCoins: 1

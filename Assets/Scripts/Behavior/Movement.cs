@@ -12,38 +12,25 @@ namespace Behavior.Movement
         private float timeToStop;
         private AudioManager audioManager;
 
-        public Movement(Rigidbody2D body, float bodyVelocity, int direction)
-        {
-            this.bodyToMove = body;
-            this.bodyVelocity = bodyVelocity;
-            this.direction = direction;
-            this.timeToStop = 1;
+        public Movement(BasicEnemy enemy){
+            this.bodyToMove = enemy.enemyBody;
+            this.bodyVelocity = enemy.runSpeed;
+            this.direction = enemy.direction;
         }
-        public Movement(Rigidbody2D body, float bodyVelocity, float jumpPower, int direction)
-        {
-            this.bodyToMove = body;
-            this.bodyVelocity = bodyVelocity;
-            this.jumpPower = jumpPower;
-            this.direction = direction;
-            this.timeToStop = 1;
+        public Movement(JumpingEnemy enemy){
+            this.bodyToMove = enemy.enemyBody;
+            this.bodyVelocity = enemy.runSpeed;
+            this.direction = enemy.direction;
+            this.jumpPower = enemy.jumpPower;
         }
-        public Movement(Rigidbody2D body, float bodyVelocity,float jumpPower, float velocityWhileJumping, int direction)
+        public Movement(PlayerStateManager player)
         {
-            this.bodyToMove = body;
-            this.bodyVelocity = bodyVelocity;
-            this.jumpPower = jumpPower;
-            this.velocityWhileJumping = velocityWhileJumping;
-            this.direction = direction;
-            this.timeToStop = 1;
-        }
-        public Movement(Rigidbody2D body, float bodyVelocity, float timeToStop, float jumpPower, float velocityWhileJumping, AudioManager audioManager)
-        {
-            this.bodyToMove = body;
-            this.bodyVelocity = bodyVelocity;
-            this.jumpPower = jumpPower;
-            this.velocityWhileJumping = velocityWhileJumping;
-            this.timeToStop = timeToStop;
-            this.audioManager = audioManager;
+            this.bodyToMove = player.playerBody;
+            this.bodyVelocity = player.velocity;
+            this.jumpPower = player.jumpingPower;
+            this.velocityWhileJumping = player.velocityWhenJumping;
+            this.timeToStop = player.abruptStop;
+            this.audioManager = player.audioManager;
         }
 
         public void MoveBody(int direction)

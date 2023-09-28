@@ -46,7 +46,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerBody = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        playerMovement = new Movement(playerBody, velocity, abruptStop, jumpingPower, velocityWhenJumping, audioManager);
+        playerMovement = new Movement(this);
         spriteManager = new ManageSprites(spriteRenderer, animator, jumpTag, hurtTag, runTag);
     }
     private void Start()

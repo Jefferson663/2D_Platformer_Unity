@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void SetPlayerPrefHealth(){
+    public void SetPlayerPrefHealth(){
         PlayerPrefs.SetInt("PlayerHealth", health);
     }
     private IEnumerator DamageCoolDown()
